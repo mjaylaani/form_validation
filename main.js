@@ -48,13 +48,35 @@ const checkEmail = (email) =>{
     else{
         showError(email,'Invalid email')
     }
+};
+
+const checkPasswordLength = (input, min,max) =>{
+    if(input.value.length< min ){
+        showError(input, `password at least ${min} charecter`)
+    }
+    else if(input.value.length > max){
+        showError(input, `password maximud character is ${max} `)
+    } 
+    else{
+        showkkSuccess(input);
+    }
 }
+const checkConfirmPassowrd =(password,confirmPassword) =>{
+       if(password.value !== confirmPassword.value){
+        showError(confirmPassword,'password does not much')
+       }
+}
+
 
 form.addEventListener("submit",(event) => {
     event.preventDefault();
   
     checkEmpty([username,email,password,confirmPassword])
     checkEmail(email);
+
+    checkPasswordLength(password,6,20)
+    checkPasswordLength(confirmPassword,6,10)
+    checkConfirmPassowrd(password,confirmPassword);
 
     
 });
